@@ -32,8 +32,7 @@ public class Account {
 
     private String accountNumber;
 
-    @Enumerated(EnumType.STRING)
-    private SortCode sortCode;
+    private String sortCode;
 
     @NotBlank(message = "Account name is mandatory")
     private String name;
@@ -75,11 +74,11 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
-    public SortCode getSortCode() {
+    public String getSortCode() {
         return sortCode;
     }
 
-    public void setSortCode(SortCode sortCode) {
+    public void setSortCode(String sortCode) {
         this.sortCode = sortCode;
     }
 

@@ -25,13 +25,13 @@ public class AccountServiceImpl implements AccountService {
     public Account save(Account account) {
         Random gen = new Random();
         long randomInt = gen.nextInt(100000, 999999);
-        String formattedId = String.format("01%06d", randomInt).substring(0,8);
+        String formattedId = "01" + randomInt;
         account.setAccountNumber(formattedId);
         account.setCreatedTimestamp(new Date());
         account.setUpdatedTimestamp(new Date());
         account.setCurrency(Currency.GBP);
         account.setBalance(0.0);
-        account.setSortCode(SortCode.CENTRAL_LONDON);
+        account.setSortCode(SortCode.CENTRAL_LONDON.getLabel());
         return repository.save(account);
     }
 

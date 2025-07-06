@@ -20,7 +20,7 @@ public class AccountDTO {
 
     private String accountNumber;
 
-    private SortCode sortCode;
+    private String sortCode;
 
     private String name;
 
@@ -50,11 +50,11 @@ public class AccountDTO {
         this.accountNumber = accountNumber;
     }
 
-    public SortCode getSortCode() {
+    public String getSortCode() {
         return sortCode;
     }
 
-    public void setSortCode(SortCode sortCode) {
+    public void setSortCode(String sortCode) {
         this.sortCode = sortCode;
     }
 

@@ -1,10 +1,8 @@
 package com.example.barclays.controllers;
 
 import com.example.barclays.domain.dto.AccountDTO;
-import com.example.barclays.domain.dto.UserDTO;
 import com.example.barclays.domain.entities.Account;
 import com.example.barclays.domain.entities.User;
-import com.example.barclays.domain.enums.AccountType;
 import com.example.barclays.mappers.Mapper;
 import com.example.barclays.security.JwtUtil;
 import com.example.barclays.services.AccountService;

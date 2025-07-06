@@ -2,10 +2,13 @@ package com.example.barclays.domain.entities;
 
 import com.example.barclays.domain.enums.TransactionType;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "transactions")
@@ -25,7 +28,10 @@ public class Transaction {
     private Double amount;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private TransactionType type;
+
+    private Date createdTimestamp;
 
     public Long getId() {
         return id;
@@ -57,5 +63,13 @@ public class Transaction {
 
     public void setType(TransactionType type) {
         this.type = type;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 }

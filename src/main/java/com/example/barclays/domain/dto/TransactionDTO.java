@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +20,8 @@ public class TransactionDTO {
     private Double amount;
 
     private TransactionType type;
+
+    private Date createdTimestamp;
 
     public Long getId() {
         return id;
@@ -41,5 +45,13 @@ public class TransactionDTO {
 
     public void setType(TransactionType type) {
         this.type = type;
+    }
+
+    public Date getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(Date createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
     }
 }

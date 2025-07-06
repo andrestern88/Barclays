@@ -6,6 +6,7 @@ import com.example.barclays.repositories.UserRepository;
 import com.example.barclays.services.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,6 +57,9 @@ public class UserServiceImpl implements UserService {
             Optional.ofNullable(user.getFirstnames()).ifPresent(existingUser::setFirstnames);
             Optional.ofNullable(user.getLastnames()).ifPresent(existingUser::setLastnames);
             Optional.ofNullable(user.getAddress()).ifPresent(existingUser::setAddress);
+            Optional.ofNullable(user.getEmail()).ifPresent(existingUser::setEmail);
+            Optional.ofNullable(user.getPhoneNumber()).ifPresent(existingUser::setPhoneNumber);
+            existingUser.setUpdatedTimestamp(new Date());
             return repository.save(existingUser);
         }).orElseThrow(() -> new RuntimeException("User does not exist"));
     }

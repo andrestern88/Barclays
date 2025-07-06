@@ -10,6 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
@@ -44,7 +47,11 @@ public class AuthController {
                 encoder.encode(user.getPassword()),
                 user.getFirstnames(),
                 user.getLastnames(),
-                user.getAddress()
+                user.getAddress(),
+                user.getPhoneNumber(),
+                user.getEmail(),
+                new Date(),
+                new Date()
         );
 
         userRepository.save(newUser);

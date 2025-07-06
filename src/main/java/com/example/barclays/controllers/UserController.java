@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +37,8 @@ public class UserController {
     @PostMapping(path = "v1/users")
     public UserDTO createUser(@RequestBody UserDTO userDTO){
         User user = mapper.mapTo(userDTO);
+        user.setCreatedTimestamp(new Date());
+        user.setUpdatedTimestamp(new Date());
         User savedUser = userService.save(user);
         return mapper.mapFrom(savedUser);
     }
