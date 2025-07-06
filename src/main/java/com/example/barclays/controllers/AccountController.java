@@ -35,14 +35,14 @@ public class AccountController {
     }
 
     @PostMapping(path = "v1/accounts")
-    public AccountDTO createAccount(@RequestBody AccountDTO accountDTO,
+    public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO,
                                     @RequestHeader(value = "Authorization") String jwtToken){
         final String usernameFromToken = jwtUtils.getUsernameFromToken(jwtUtils.removeBearer(jwtToken));
         final User user = userService.findByUsername(usernameFromToken);
         Account account = mapper.mapTo(accountDTO);
         account.setAccountOwner(user);
         Account savedAccount = accountService.save(account);
-        return mapper.mapFrom(savedAccount);
+        return new ResponseEntity<>(mapper.mapFrom(savedAccount), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "v1/accounts")

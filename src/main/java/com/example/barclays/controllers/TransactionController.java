@@ -61,7 +61,7 @@ public class TransactionController {
         } catch (NotEnoughFundsException | TransactionAmountLimit e) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(e.getMessage());
         }
-        return new ResponseEntity<>(mapper.mapFrom(savedTransaction), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.mapFrom(savedTransaction), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "v1/accounts/{accountId}/transactions")
