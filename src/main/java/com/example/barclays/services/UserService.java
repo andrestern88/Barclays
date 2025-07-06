@@ -1,6 +1,7 @@
 package com.example.barclays.services;
 
 import com.example.barclays.domain.entities.User;
+import com.example.barclays.exceptions.UserHasAccountException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface UserService {
 
     User update(String userId, User user);
 
-    void delete(String userId);
+    void delete(String userId) throws UserHasAccountException;
 }

@@ -1,6 +1,5 @@
 package com.example.barclays.services;
 
-import com.example.barclays.domain.entities.Account;
 import com.example.barclays.domain.entities.Transaction;
 import com.example.barclays.exceptions.NotEnoughFundsException;
 import com.example.barclays.exceptions.TransactionAmountLimit;
@@ -15,5 +14,5 @@ public interface TransactionService {
 
     List<Transaction> findAllByAccountId(Long accountId);
 
-    Optional<Transaction> findById(Long accoundId);
+    Optional<Transaction> findById(Long transactionId);
 }

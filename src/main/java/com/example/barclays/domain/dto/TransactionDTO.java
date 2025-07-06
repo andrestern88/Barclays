@@ -1,6 +1,5 @@
 package com.example.barclays.domain.dto;
 
-import com.example.barclays.domain.entities.Account;
 import com.example.barclays.domain.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

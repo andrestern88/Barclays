@@ -1,6 +1,5 @@
 package com.example.barclays.controllers;
 
-import com.example.barclays.domain.dto.AccountDTO;
 import com.example.barclays.domain.dto.TransactionDTO;
 import com.example.barclays.domain.entities.Account;
 import com.example.barclays.domain.entities.Transaction;
@@ -17,8 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

@@ -21,7 +21,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trasaction_id_seq")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL )
+    @ManyToOne()
     @JoinColumn(name = "account_id")
     private Account account;
 

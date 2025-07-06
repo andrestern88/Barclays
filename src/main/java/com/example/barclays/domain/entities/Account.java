@@ -2,8 +2,6 @@ package com.example.barclays.domain.entities;
 
 import com.example.barclays.domain.enums.AccountType;
 import com.example.barclays.domain.enums.Currency;
-import com.example.barclays.domain.enums.SortCode;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Date;
 

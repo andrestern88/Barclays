@@ -2,6 +2,7 @@ package com.example.barclays.controllers;
 
 import com.example.barclays.domain.dto.UserDTO;
 import com.example.barclays.domain.entities.User;
+import com.example.barclays.exceptions.UserHasAccountException;
 import com.example.barclays.mappers.Mapper;
 import com.example.barclays.security.JwtUtil;
 import com.example.barclays.services.AccountService;
@@ -32,15 +33,6 @@ public class UserController {
         this.userService = userService;
         this.accountService = accountService;
         this.mapper = mapper;
-    }
-
-    @PostMapping(path = "v1/users")
-    public UserDTO createUser(@RequestBody UserDTO userDTO){
-        User user = mapper.mapTo(userDTO);
-        user.setCreatedTimestamp(new Date());
-        user.setUpdatedTimestamp(new Date());
-        User savedUser = userService.save(user);
-        return mapper.mapFrom(savedUser);
     }
 
     @GetMapping(path = "v1/users")
@@ -94,7 +86,11 @@ public class UserController {
         if(!userService.isExists(userId)){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User was not found");
         }
-        userService.delete(userId);
+        try {
+            userService.delete(userId);
+        } catch (UserHasAccountException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

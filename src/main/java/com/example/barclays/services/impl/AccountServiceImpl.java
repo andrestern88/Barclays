@@ -1,10 +1,11 @@
 package com.example.barclays.services.impl;
 
 import com.example.barclays.domain.entities.Account;
-import com.example.barclays.domain.enums.AccountType;
+import com.example.barclays.domain.entities.Transaction;
 import com.example.barclays.domain.enums.Currency;
 import com.example.barclays.domain.enums.SortCode;
 import com.example.barclays.repositories.AccountRepository;
+import com.example.barclays.repositories.TransactionRepository;
 import com.example.barclays.services.AccountService;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,11 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository repository;
 
-    public AccountServiceImpl(AccountRepository repository) {
+    private final TransactionRepository transactionRepository;
+
+    public AccountServiceImpl(AccountRepository repository, TransactionRepository transactionRepository) {
         this.repository = repository;
+        this.transactionRepository = transactionRepository;
     }
     @Override
     public Account save(Account account) {
@@ -59,6 +63,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void delete(Long accountId) {
+        final List<Transaction> transactions = transactionRepository.findTransactionByAccount_Id(accountId);
+        for(Transaction transaction : transactions) {
+            transactionRepository.delete(transaction);
+        }
         repository.deleteById(accountId);
     }
 }

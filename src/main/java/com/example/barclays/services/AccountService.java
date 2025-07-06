@@ -9,13 +9,13 @@ import java.util.Optional;
 @Service
 public interface AccountService {
 
-    Account save(Account user);
+    Account save(Account account);
 
-    List<Account> findAllByUserId(String userId);
+    List<Account> findAllByUserId(String accountId);
 
     Optional<Account> findById(Long accoundId);
 
-    Account update(Long accountId, Account user);
+    Account update(Long accountId, Account account);
 
     void delete(Long accountId);
 }

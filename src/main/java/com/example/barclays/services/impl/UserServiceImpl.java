@@ -1,6 +1,7 @@
 package com.example.barclays.services.impl;
 
 import com.example.barclays.domain.entities.User;
+import com.example.barclays.exceptions.UserHasAccountException;
 import com.example.barclays.repositories.AccountRepository;
 import com.example.barclays.repositories.UserRepository;
 import com.example.barclays.services.UserService;
@@ -65,13 +66,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String userId) {
+    public void delete(String userId) throws UserHasAccountException {
         final Optional<User> user = this.repository.findById(userId);
         if(user.isPresent()) {
             if (accountRepository.findAccountsByAccountOwner_Id(userId).isEmpty()){
                 this.repository.deleteById(userId);
             } else {
-                throw new RuntimeException("A user cannot be deleted when they are associated with a bank account");
+                throw new UserHasAccountException("A user cannot be deleted when they are associated with a bank account");
             }
         }
     }

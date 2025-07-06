@@ -2,7 +2,6 @@ package com.example.barclays.domain.dto;
 
 import com.example.barclays.domain.enums.AccountType;
 import com.example.barclays.domain.enums.Currency;
-import com.example.barclays.domain.enums.SortCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

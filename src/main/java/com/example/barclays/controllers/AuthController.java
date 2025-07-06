@@ -1,20 +1,21 @@
 package com.example.barclays.controllers;
 
-import com.example.barclays.domain.dto.UserDTO;
 import com.example.barclays.domain.entities.User;
 import com.example.barclays.repositories.UserRepository;
 import com.example.barclays.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
 @RestController
-@RequestMapping("/v1/auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -24,7 +25,7 @@ public class AuthController {
     PasswordEncoder encoder;
     @Autowired
     JwtUtil jwtUtils;
-    @PostMapping("/signin")
+    @PostMapping("/v1/auth/signin")
     public String authenticateUser(@RequestBody User user) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -35,7 +36,7 @@ public class AuthController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return jwtUtils.generateToken(userDetails.getUsername());
     }
-    @PostMapping("/signup")
+    @PostMapping("/v1/users")
     public String registerUser(@RequestBody User user) {
         if (userRepository.existsByUsername(user.getUsername())) {
             return "Error: Username is already taken!";
